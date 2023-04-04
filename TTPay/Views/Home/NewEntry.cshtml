@@ -13,8 +13,8 @@
         </tr>
         <tr>
             <td>Ukupno</td>
-            <td><input type="number" id="numUkTrosak" name="numUkTrosak" onchange="EntryDataChange()" class="txtNumber" /> </td>
-            <td><input type="number" id="numUkPlaceno" name="numUkPlaceno" onchange="EntryDataChange()" class="txtNumber" /> </td>
+            <td><input type="number" id="numUkTrosak" name="numUkTrosak" value="500" onchange="EntryDataChange()" class="txtNumber" /> </td>
+            <td><input type="number" id="numUkPlaceno" name="numUkPlaceno" value="500" onchange="EntryDataChange()" class="txtNumber" /> </td>
         </tr>
 
         <tr>
@@ -56,4 +56,8 @@
     </table>
 
     <input type="submit" value="Ok" id="submitNewEntry" />
+
+    <p style="color:red; margin-top:10px;">
+        @TempData["Error"]
+    </p>
 </form>

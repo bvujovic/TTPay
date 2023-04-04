@@ -1,8 +1,63 @@
-﻿@{
+﻿@model IEnumerable<Susret>
+
+@{
     ViewData["Title"] = "Sva plaćanja";
 }
 
-<div class="text-center">
-    <h1 class="display-4">@ViewData["Title"]</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h1>@ViewData["Title"]</h1>
+
+@{
+    int BojanPotrosio = 0, BojanPlatio = 0, ZecPotrosio = 0, ZecPlatio = 0, ManicPotrosio = 0, ManicPlatio = 0;
+    foreach (var s in Model)
+    {
+        BojanPotrosio += s.BojanPotrosio;
+        BojanPlatio += s.BojanPlatio;
+        ZecPotrosio += s.ZecPotrosio;
+        ZecPlatio += s.ZecPlatio;
+        ManicPotrosio += s.ManicPotrosio;
+        ManicPlatio += s.ManicPlatio;
+    }
+}
+<table border="1" class="table table-bordered table-hover" style="text-align:right;">
+    <tr class="table-success">
+        <th>Datum</th>
+        <th>Bojan</th>
+        <th>@(BojanPlatio - BojanPotrosio)</th>
+        <th>Bane</th>
+        <th>@(ZecPlatio - ZecPotrosio)</th>
+        <th>Manić</th>
+        <th>@(ManicPlatio - ManicPotrosio)</th>
+    </tr>
+    <tr style="font-size:small">
+        <th></th>
+        <th>Potrošio</th>
+        <th>Platio</th>
+        <th>Potrošio</th>
+        <th>Platio</th>
+        <th>Potrošio</th>
+        <th>Platio</th>
+    </tr>
+
+    <tr>
+        <th>Ukupno</th>
+        <th>@BojanPotrosio</th>
+        <th>@BojanPlatio</th>
+        <th>@ZecPotrosio</th>
+        <th>@ZecPlatio</th>
+        <th>@ManicPotrosio</th>
+        <th>@ManicPlatio</th>
+    </tr>
+
+    @foreach (var s in Model)
+    {
+        <tr>
+            <td>@s.Datum.ToShortDateString()</td>
+            <td>@s.BojanPotrosio</td>
+            <td>@s.BojanPlatio</td>
+            <td>@s.ZecPotrosio</td>
+            <td>@s.ZecPlatio</td>
+            <td>@s.ManicPotrosio</td>
+            <td>@s.ManicPlatio</td>
+        </tr>
+    }
+</table>

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using TTPay.Models;
 using TTPay.Models.Data;
@@ -7,18 +8,25 @@ namespace TTPay.Controllers
 {
     public class HomeController : Controller
     {
-        //private readonly ILogger<HomeController> _logger;
         private readonly DataContext db;
 
-        public HomeController(DataContext db /*ILogger<HomeController> logger*/)
+        public HomeController(DataContext db)
         {
-            //_logger = logger;
             this.db = db;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            try
+            {
+                var lst = await db.Susreti.OrderByDescending(it => it.Datum).ToListAsync();
+                return View(lst);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = ex.Message;
+                return View();
+            }
         }
 
         public IActionResult NewEntry()
@@ -31,6 +39,7 @@ namespace TTPay.Controllers
         {
             try
             {
+                //T throw new Exception("Pera!");
                 var s = new Susret
                 {
                     Datum = datum,
@@ -43,9 +52,13 @@ namespace TTPay.Controllers
                 };
                 await db.Susreti.AddAsync(s);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
-            catch (Exception ex) { return RedirectToAction("NewEntry", ex.Message); }
+            catch (Exception ex)
+            {
+                TempData.Add("Error", ex.Message);
+                return RedirectToAction(nameof(NewEntry));
+            }
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
