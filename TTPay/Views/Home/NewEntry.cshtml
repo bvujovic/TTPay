@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "Novo plaćanje";
+}
+<h1>@ViewData["Title"]</h1>
+
+<form method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="NewEntryData">
+    <input type="date" name="datum" style="margin-bottom:10px" />
+    <table border="1" class="tblNewEntry">
+        <tr>
+            <td></td>
+            <th>Trošak</th>
+            <th>Plaćeno</th>
+        </tr>
+        <tr>
+            <td>Ukupno</td>
+            <td><input type="number" id="numUkTrosak" name="numUkTrosak" onchange="EntryDataChange()" class="txtNumber" /> </td>
+            <td><input type="number" id="numUkPlaceno" name="numUkPlaceno" onchange="EntryDataChange()" class="txtNumber" /> </td>
+        </tr>
+
+        <tr>
+            <td>Bojan</td>
+            <td>
+                <input type="checkbox" id="chkBTrosak" onchange="EntryDataChange()" />
+                <input type="number" id="numBTrosak" name="numBTrosak" class="txtNumber" />
+            </td>
+            <td>
+                <input type="checkbox" id="chkBPlaceno" onchange="EntryDataChange()" />
+                <input type="number" id="numBPlaceno" name="numBPlaceno" class="txtNumber" />
+            </td>
+        </tr>
+
+        <tr>
+            <td>Bane</td>
+            <td>
+                <input type="checkbox" id="chkZTrosak" onchange="EntryDataChange()" />
+                <input type="number" id="numZTrosak" name="numZTrosak" class="txtNumber" />
+            </td>
+            <td>
+                <input type="checkbox" id="chkZPlaceno" onchange="EntryDataChange()" />
+                <input type="number" id="numZPlaceno" name="numZPlaceno" class="txtNumber" />
+            </td>
+        </tr>
+
+        <tr>
+            <td>Manić</td>
+            <td>
+                <input type="checkbox" id="chkMTrosak" onchange="EntryDataChange()" />
+                <input type="number" id="numMTrosak" name="numMTrosak" class="txtNumber" />
+            </td>
+            <td>
+                <input type="checkbox" id="chkMPlaceno" onchange="EntryDataChange()" />
+                <input type="number" id="numMPlaceno" name="numMPlaceno" class="txtNumber" />
+            </td>
+        </tr>
+
+    </table>
+
+    <input type="submit" value="Ok" id="submitNewEntry" />
+</form>

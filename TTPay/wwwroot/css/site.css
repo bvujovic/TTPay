@@ -1,0 +1,40 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+h1 {
+    margin-bottom: 30px;
+}
+
+.txtNumber {
+    width: 80px;
+    float: right;
+}
+
+.tblNewEntry td {
+    padding: 5px;
+}
+
+.tblNewEntry th {
+    text-align: center;
+}
+
+#submitNewEntry {
+    margin-top: 20px;
+    width: 80px
+}
