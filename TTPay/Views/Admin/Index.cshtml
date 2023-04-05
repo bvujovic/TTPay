@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Admin panel";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    Preuzimanje svih podataka (JSON) o susretima: <a asp-controller="Admin" asp-action="GetSviSusreti">Backup</a>
+</p>
+
+<p>
+    <form method="post" enctype="multipart/form-data" asp-controller="Admin" asp-action="SetSviSusreti">
+        Vraćanje svih podataka (JSON) o susretima:
+        <textarea name="json" cols="80" rows="10" style="display:block" ></textarea>
+
+        <input type="submit" value="Restore" />
+
+        <p style="color:red; margin-top:10px;">
+            @TempData["Error"]
+        </p>
+        <p style="color:green; margin-top:10px;">
+            @TempData["Info"]
+        </p>
+    </form>
+</p>

@@ -27,6 +27,7 @@
         <th>@(ZecPlatio - ZecPotrosio)</th>
         <th>Manić</th>
         <th>@(ManicPlatio - ManicPotrosio)</th>
+        <th style="width:40px"></th>
     </tr>
     <tr style="font-size:small">
         <th></th>
@@ -36,6 +37,7 @@
         <th>Platio</th>
         <th>Potrošio</th>
         <th>Platio</th>
+        <th></th>
     </tr>
 
     <tr>
@@ -46,6 +48,7 @@
         <th>@ZecPlatio</th>
         <th>@ManicPotrosio</th>
         <th>@ManicPlatio</th>
+        <th></th>
     </tr>
 
     @foreach (var s in Model)
@@ -58,6 +61,11 @@
             <td>@s.ZecPlatio</td>
             <td>@s.ManicPotrosio</td>
             <td>@s.ManicPlatio</td>
+            <td>
+                <a href="/Home/ObrisiSusret?id=@s.SusretId">
+                    <img src="~/sign-delete-icon.png" style="width:24px" title="Obriši ovaj susret" />
+                </a>
+            </td>
         </tr>
     }
 </table>

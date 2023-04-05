@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using TTPay.Models;
@@ -19,14 +20,18 @@ namespace TTPay.Controllers
         {
             try
             {
-                var lst = await db.Susreti.OrderByDescending(it => it.Datum).ToListAsync();
-                return View(lst);
+                return View(await SviSusreti());
             }
             catch (Exception ex)
             {
                 ViewBag.Error = ex.Message;
-                return View();
+                return View(Enumerable.Empty<Susret>());
             }
+        }
+
+        private async Task<IEnumerable<Susret>> SviSusreti()
+        {
+            return await db.Susreti.OrderByDescending(it => it.Datum).ToListAsync();
         }
 
         public IActionResult NewEntry()
@@ -34,12 +39,22 @@ namespace TTPay.Controllers
             return View();
         }
 
-        public async Task<IActionResult> NewEntryData(DateTime datum,
+        public async Task<IActionResult> ObrisiSusret(int id)
+        {
+            var s = await db.Susreti.FindAsync(id);
+            if (s != null)
+            {
+                db.Susreti.Remove(s);
+                await db.SaveChangesAsync();
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> NoviSusret(DateTime datum,
             int numBTrosak, int numBPlaceno, int numZTrosak, int numZPlaceno, int numMTrosak, int numMPlaceno)
         {
             try
             {
-                //T throw new Exception("Pera!");
                 var s = new Susret
                 {
                     Datum = datum,

@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <Content Include="Models\Data\ttp.db">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
