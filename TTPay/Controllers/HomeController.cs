@@ -51,7 +51,7 @@ namespace TTPay.Controllers
         }
 
         public async Task<IActionResult> NoviSusret(DateTime datum,
-            int numBTrosak, int numBPlaceno, int numZTrosak, int numZPlaceno, int numMTrosak, int numMPlaceno)
+            double numBTrosak, int numBPlaceno, double numZTrosak, int numZPlaceno, double numMTrosak, int numMPlaceno)
         {
             try
             {

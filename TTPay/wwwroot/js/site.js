@@ -7,7 +7,7 @@ function EntryDataChange() {
     // numUkPlaceno.value = numUkTrosak.value;
 
     var igraloLjudi = chkBTrosak.checked + chkZTrosak.checked + chkMTrosak.checked;
-    var trosakCovek = Math.round(numUkTrosak.value / igraloLjudi);
+    var trosakCovek = Math.round(numUkTrosak.value / igraloLjudi * 100) / 100;
     numBTrosak.value = chkBTrosak.checked ? trosakCovek : 0;
     numZTrosak.value = chkZTrosak.checked ? trosakCovek : 0;
     numMTrosak.value = chkMTrosak.checked ? trosakCovek : 0;

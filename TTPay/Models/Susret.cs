@@ -9,13 +9,13 @@ namespace TTPay.Models
 
         public DateTime Datum { get; set; }
 
-        public int BojanPotrosio { get; set; }
-        public int BojanPlatio { get; set; }
+        public double BojanPotrosio { get; set; }
+        public double BojanPlatio { get; set; }
 
-        public int ZecPotrosio { get; set; }
-        public int ZecPlatio { get; set; }
+        public double ZecPotrosio { get; set; }
+        public double ZecPlatio { get; set; }
 
-        public int ManicPotrosio { get; set; }
-        public int ManicPlatio { get; set; }
+        public double ManicPotrosio { get; set; }
+        public double ManicPlatio { get; set; }
     }
 }

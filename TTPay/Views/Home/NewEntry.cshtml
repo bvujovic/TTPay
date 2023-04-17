@@ -4,7 +4,7 @@
 <h1>@ViewData["Title"]</h1>
 
 <form method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="NoviSusret">
-    <input type="date" name="datum" style="margin-bottom:10px" />
+    <input type="date" name="datum" required style="margin-bottom:10px" />
     <table border="1" class="tblNewEntry">
         <tr>
             <td></td>
@@ -21,7 +21,7 @@
             <td>Bojan</td>
             <td>
                 <input type="checkbox" id="chkBTrosak" onchange="EntryDataChange()" />
-                <input type="number" id="numBTrosak" name="numBTrosak" class="txtNumber" />
+                <input type="number" step="0.01" id="numBTrosak" name="numBTrosak" class="txtNumber" />
             </td>
             <td>
                 <input type="checkbox" id="chkBPlaceno" onchange="EntryDataChange()" />
@@ -33,7 +33,7 @@
             <td>Bane</td>
             <td>
                 <input type="checkbox" id="chkZTrosak" onchange="EntryDataChange()" />
-                <input type="number" id="numZTrosak" name="numZTrosak" class="txtNumber" />
+                <input type="number" step="0.01" id="numZTrosak" name="numZTrosak" class="txtNumber" />
             </td>
             <td>
                 <input type="checkbox" id="chkZPlaceno" onchange="EntryDataChange()" />
@@ -45,7 +45,7 @@
             <td>Manić</td>
             <td>
                 <input type="checkbox" id="chkMTrosak" onchange="EntryDataChange()" />
-                <input type="number" id="numMTrosak" name="numMTrosak" class="txtNumber" />
+                <input type="number" step="0.01" id="numMTrosak" name="numMTrosak" class="txtNumber" />
             </td>
             <td>
                 <input type="checkbox" id="chkMPlaceno" onchange="EntryDataChange()" />

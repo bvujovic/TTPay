@@ -17,6 +17,7 @@ namespace TTPay.Controllers
 
         public IActionResult Index()
         {
+            //* var s = db.Database.GenerateCreateScript(); -> kreiranje strukture tabele
             return View();
         }
 

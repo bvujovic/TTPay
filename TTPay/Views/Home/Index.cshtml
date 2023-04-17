@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<Susret>
 
 @{
-    ViewData["Title"] = "Sva plaćanja";
+    ViewData["Title"] = "Svi susreti";
 }
 
 <h1>@ViewData["Title"]</h1>
 
 @{
-    int BojanPotrosio = 0, BojanPlatio = 0, ZecPotrosio = 0, ZecPlatio = 0, ManicPotrosio = 0, ManicPlatio = 0;
+    double BojanPotrosio = 0, BojanPlatio = 0, ZecPotrosio = 0, ZecPlatio = 0, ManicPotrosio = 0, ManicPlatio = 0;
     foreach (var s in Model)
     {
         BojanPotrosio += s.BojanPotrosio;
@@ -17,16 +17,27 @@
         ManicPotrosio += s.ManicPotrosio;
         ManicPlatio += s.ManicPlatio;
     }
+    var BojanStanje = Math.Round(BojanPlatio - BojanPotrosio, 2);
+    BojanStanje = BojanStanje > -0.5 && BojanStanje < 0 ? 0 : BojanStanje; // da ne bi pisalo -0 kada je stanje -0.01
+    var ZecStanje = Math.Round(ZecPlatio - ZecPotrosio, 2);
+    ZecStanje = ZecStanje > -0.5 && ZecStanje < 0 ? 0 : ZecStanje;
+    var ManicStanje = Math.Round(ManicPlatio - ManicPotrosio, 2);
+    ManicStanje = ManicStanje > -0.5 && ManicStanje < 0 ? 0 : ManicStanje;
+    var min = (new[] { BojanStanje, ZecStanje, ManicStanje }).Min();
+    var BojanBoja = BojanStanje == min ? "red" : "none";
+    var ZecBoja = ZecStanje == min ? "red" : "none";
+    var ManicBoja = ManicStanje == min ? "red" : "none";
+
 }
 <table border="1" class="table table-bordered table-hover" style="text-align:right;">
     <tr class="table-success">
         <th>Datum</th>
-        <th>Bojan</th>
-        <th>@(BojanPlatio - BojanPotrosio)</th>
-        <th>Bane</th>
-        <th>@(ZecPlatio - ZecPotrosio)</th>
-        <th>Manić</th>
-        <th>@(ManicPlatio - ManicPotrosio)</th>
+        <th style='color:@BojanBoja'>Bojan</th>
+        <th>@(Math.Round(BojanStanje))</th>
+        <th style='color:@ZecBoja'>Bane</th>
+        <th>@(Math.Round(ZecStanje))</th>
+        <th style='color:@ManicBoja'>Manić</th>
+        <th>@(Math.Round(ManicStanje))</th>
         <th style="width:40px"></th>
     </tr>
     <tr style="font-size:small">
@@ -54,7 +65,7 @@
     @foreach (var s in Model)
     {
         <tr>
-            <td>@s.Datum.ToShortDateString()</td>
+            <td>@s.Datum.ToString("yyyy-MM-dd")</td>
             <td>@s.BojanPotrosio</td>
             <td>@s.BojanPlatio</td>
             <td>@s.ZecPotrosio</td>
@@ -63,7 +74,7 @@
             <td>@s.ManicPlatio</td>
             <td>
                 <a href="/Home/ObrisiSusret?id=@s.SusretId">
-                    <img src="~/sign-delete-icon.png" style="width:24px" title="Obriši ovaj susret" />
+                    <img src="~/img/sign-delete-icon.png" style="width:24px" title="Obriši ovaj susret" />
                 </a>
             </td>
         </tr>
