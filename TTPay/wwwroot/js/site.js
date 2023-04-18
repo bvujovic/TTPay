@@ -17,4 +17,9 @@ function EntryDataChange() {
     numBPlaceno.value = chkBPlaceno.checked ? platioCovek : 0;
     numZPlaceno.value = chkZPlaceno.checked ? platioCovek : 0;
     numMPlaceno.value = chkMPlaceno.checked ? platioCovek : 0;
+
+    var trosakOk = Math.abs(numUkTrosak.value - numBTrosak.value - numZTrosak.value - numMTrosak.value) <= 1;
+    var placanjeOk = Math.abs(numUkPlaceno.value - numBPlaceno.value - numZPlaceno.value - numMPlaceno.value) <= 1;
+
+    submitNewEntry.disabled = !trosakOk || !placanjeOk;
 }

@@ -33,7 +33,7 @@
     <tr class="table-success">
         <th>Datum</th>
         <th style='color:@BojanBoja'>Bojan</th>
-        <th>@(Math.Round(BojanStanje))</th>
+        <th>@Math.Round(BojanStanje)</th>
         <th style='color:@ZecBoja'>Bane</th>
         <th>@(Math.Round(ZecStanje))</th>
         <th style='color:@ManicBoja'>Manić</th>
@@ -53,12 +53,12 @@
 
     <tr>
         <th>Ukupno</th>
-        <th>@BojanPotrosio</th>
-        <th>@BojanPlatio</th>
-        <th>@ZecPotrosio</th>
-        <th>@ZecPlatio</th>
-        <th>@ManicPotrosio</th>
-        <th>@ManicPlatio</th>
+        <th>@BojanPotrosio.ToString("0.00")</th>
+        <th>@BojanPlatio.ToString("0.00")</th>
+        <th>@ZecPotrosio.ToString("0.00")</th>
+        <th>@ZecPlatio.ToString("0.00")</th>
+        <th>@ManicPotrosio.ToString("0.00")</th>
+        <th>@ManicPlatio.ToString("0.00")</th>
         <th></th>
     </tr>
 
@@ -66,12 +66,12 @@
     {
         <tr>
             <td>@s.Datum.ToString("yyyy-MM-dd")</td>
-            <td>@s.BojanPotrosio</td>
-            <td>@s.BojanPlatio</td>
-            <td>@s.ZecPotrosio</td>
-            <td>@s.ZecPlatio</td>
-            <td>@s.ManicPotrosio</td>
-            <td>@s.ManicPlatio</td>
+            <td>@(s.BojanPotrosio > 0 ? s.BojanPotrosio.ToString("0.00") : "")</td>
+            <td>@(s.BojanPlatio > 0 ? s.BojanPlatio.ToString("0.00") : "")</td>
+            <td>@(s.ZecPotrosio > 0 ? s.ZecPotrosio.ToString("0.00") : "")</td>
+            <td>@(s.ZecPlatio > 0 ? s.ZecPlatio.ToString("0.00") : "")</td>
+            <td>@(s.ManicPotrosio > 0 ? s.ManicPotrosio.ToString("0.00") : "")</td>
+            <td>@(s.ManicPlatio > 0 ? s.ManicPlatio.ToString("0.00") : "")</td>
             <td>
                 <a href="/Home/ObrisiSusret?id=@s.SusretId">
                     <img src="~/img/sign-delete-icon.png" style="width:24px" title="Obriši ovaj susret" />
